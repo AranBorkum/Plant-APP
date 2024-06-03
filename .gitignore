@@ -102,7 +102,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-src/trefle_sdk/.env
+project/trefle_sdk/.env
 .venv
 env
 venv/

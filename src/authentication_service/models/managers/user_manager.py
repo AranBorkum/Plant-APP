@@ -11,7 +11,7 @@ class CustomUserManager(BaseUserManager):
         password: str,
         first_name: str | None,
         last_name: str | None,
-        telephone: int | None,
+        telephone: str | None,
         user_id: UUID | None = None,
     ) -> Any:
         if not email:

@@ -15,7 +15,7 @@ from django.db.models import (
 from authentication_service.models.managers import CustomUserManager
 
 
-class UserModel(AbstractBaseUser, PermissionsMixin):  # type: ignore
+class UserModel(AbstractBaseUser, PermissionsMixin):
     user_id: UUID | UUIDField = UUIDField(
         primary_key=True, default=uuid4, editable=False
     )
@@ -31,5 +31,5 @@ class UserModel(AbstractBaseUser, PermissionsMixin):  # type: ignore
 
     objects = CustomUserManager()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.email

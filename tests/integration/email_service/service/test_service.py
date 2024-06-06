@@ -11,10 +11,11 @@ from email_service.models import EmailLogModel
 from email_service.service import email_service
 from fixtures.integration import (  # noqa
     mail_generator,
+    registered_user_model,
     sendgrid_client,
     sendgrid_client_unhandled,
     sendgrid_client_unsuccessful,
-    user_model,
+    user_id,
 )
 
 
@@ -24,7 +25,7 @@ class TestCaseEmailService:
         self,
         mail_generator: Type[IMailGenerator],
         sendgrid_client: SendGridAPIClient,
-        user_model: UserModel,
+        registered_user_model: UserModel,
     ) -> None:
         assert EmailLogModel.objects.count() == 0
         generator = mail_generator(Email.CONFIRM_SIGN_UP, "test@test.com")
@@ -38,7 +39,7 @@ class TestCaseEmailService:
         self,
         mail_generator: Type[IMailGenerator],
         sendgrid_client_unsuccessful: SendGridAPIClient,
-        user_model: UserModel,
+        registered_user_model: UserModel,
     ) -> None:
         assert EmailLogModel.objects.count() == 0
         generator = mail_generator(Email.CONFIRM_SIGN_UP, "test@test.com")
@@ -52,7 +53,7 @@ class TestCaseEmailService:
         self,
         mail_generator: Type[IMailGenerator],
         sendgrid_client_unhandled: SendGridAPIClient,
-        user_model: UserModel,
+        registered_user_model: UserModel,
     ) -> None:
         assert EmailLogModel.objects.count() == 0
         generator = mail_generator(Email.CONFIRM_SIGN_UP, "test@test.com")

@@ -136,4 +136,6 @@ dmypy.json
 .idea
 
 # pytest-testmon
-.testmondata
+.testmondatasendgrid.env
+.env
+sendgrid.env

@@ -1,3 +1,5 @@
+from typing import Any
+
 from rest_framework.serializers import ModelSerializer
 
 from authentication_service.models import UserModel
@@ -8,7 +10,7 @@ class RegisterUserSerializer(ModelSerializer):
         model = UserModel
         fields = "__all__"
 
-    def create(self, clean_data):
+    def create(self, clean_data: dict) -> Any:
         user_obj = UserModel.objects.create_user(
             first_name=clean_data["first_name"],
             last_name=clean_data["last_name"],

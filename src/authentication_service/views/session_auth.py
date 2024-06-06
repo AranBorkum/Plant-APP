@@ -10,5 +10,5 @@ class SessionAuthTestView(APIView):
     permission_classes = (AllowAny,)
     authentication_classes = (SessionAuthentication,)
 
-    def get(self, request: Request):
+    def get(self, request: Request) -> Response:
         return Response(status=status.HTTP_200_OK)

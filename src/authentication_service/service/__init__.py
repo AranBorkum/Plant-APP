@@ -9,7 +9,7 @@ from authentication_service.service._api_methods import AuthenticationServiceAPI
 
 
 class AuthenticationService:
-    def __init__(self):
+    def __init__(self) -> None:
         self.api_methods = AuthenticationServiceAPIMethods()
 
     def register_user(self, request: Request) -> Response:

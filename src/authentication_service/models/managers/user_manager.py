@@ -1,10 +1,19 @@
+from typing import Any
+from uuid import UUID
+
 from django.contrib.auth.base_user import BaseUserManager
 
 
 class CustomUserManager(BaseUserManager):
     def create_user(
-        self, email, password, first_name, last_name, telephone, user_id=None
-    ):
+        self,
+        email: str,
+        password: str,
+        first_name: str | None,
+        last_name: str | None,
+        telephone: int | None,
+        user_id: UUID | None = None,
+    ) -> Any:
         if not email:
             raise ValueError("An email address is required")
         if not password:
@@ -31,9 +40,14 @@ class CustomUserManager(BaseUserManager):
         user.save()
         return user
 
-    def create_superuser(self, email, username=None, password=None):
+    def create_superuser(
+        self,
+        email: str,
+        password: str,
+        username: str | None = None,
+    ) -> Any:
         email = self.normalize_email(email)
-        user = self.create_user(email, password)
+        user = self.create_user(email, password, None, None, None)
         user.staff = True
         user.admin = True
         user.save()

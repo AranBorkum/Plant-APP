@@ -11,6 +11,56 @@ setuptools = "^70.0.0"
 django = "^5.0.6"
 
 
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.0.0"
+pytest = "^8.2.2"
+pytest-django = "^4.8.0"
+black = "^24.4.2"
+isort = "^5.13.2"
+mypy = "^1.10.0"
+flake8-isort = "^6.1.1"
+flake8-pyproject = "^1.2.3"
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+skip_glob = ".venv"
+src_paths = ["src", "tests"]
+
+[tool.mypy]
+exclude = [
+    "env/",
+    ".venv/",
+    "local",
+    "manage.py",
+    "asgi.py",
+    "wsgi.py",
+    "settings.py",
+    "model_fields.py",
+]
+python_version = 3.12
+check_untyped_defs = true
+disallow_incomplete_defs = true
+warn_unused_configs = true
+warn_unused_ignores = true
+disallow_subclassing_any = false
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_return_any = true
+ignore_missing_imports = true
+
+[tool.flake8]
+max-line-length = 88
+per-file-ignores = [
+    "settings.py:E501",  # ignore line length limit in settings.py file
+    "migrations/:E501",   # ignore line length limit in settings.py file
+    "test_*:F811",  # ignore redefinition in all tests because of pytest fixtures
+    "__init__.py:F403,F401",  # ignore wildcard imports in fixtures directory
+]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

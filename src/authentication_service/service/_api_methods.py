@@ -8,6 +8,8 @@ from authentication_service.serializers import (
     RegisterUserSerializer,
 )
 from authentication_service.serializers.reset_password import ResetPasswordSerializer
+from email_service.enums import Email
+from email_service.service import email_service
 from project.api_response import ServiceAPIDataclass
 
 
@@ -22,6 +24,7 @@ class AuthenticationServiceAPIMethods:
         if not user:
             return ServiceAPIDataclass.default_404()
 
+        email_service.send(Email.CONFIRM_SIGN_UP, [request.data["email"]])
         return ServiceAPIDataclass(
             status=status.HTTP_201_CREATED, data=serializer.data
         ).generate_response()

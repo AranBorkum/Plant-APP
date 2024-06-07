@@ -5,7 +5,7 @@ from enum import Enum
 from email_service.paths import __email_templates__
 
 EmailInfo = namedtuple("EmailInfo", ["template", "subject", "sender"])
-DEFAULT_SENDER = ""
+DEFAULT_SENDER = "aranborkum@hotmail.com"
 
 
 class Email(Enum):

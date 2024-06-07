@@ -18,5 +18,5 @@ class EmailLogModel(Model):
         "authentication_service.UserModel",
         on_delete=CASCADE,
     )
-    send_status = IntegerField()
+    send_status = IntegerField(default=0)
     created_timestamp = DateTimeField(auto_now_add=True)

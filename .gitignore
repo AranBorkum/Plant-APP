@@ -137,5 +137,5 @@ dmypy.json
 
 # pytest-testmon
 .testmondatasendgrid.env
-.env
+src/.env
 sendgrid.env

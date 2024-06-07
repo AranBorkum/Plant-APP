@@ -1,4 +1,5 @@
 from typing import Any
+from unittest.mock import MagicMock
 
 from django.test import Client
 from pytest import fixture
@@ -9,6 +10,16 @@ from rest_framework.response import Response
 def register_user_response(
     client: Client,
     register_user_payload: dict,
+    patch_send_mail: MagicMock,
+) -> Response | Any:
+    return client.post("/auth/register/", register_user_payload)
+
+
+@fixture
+def register_user_email_failure_response(
+    client: Client,
+    register_user_payload: dict,
+    patch_send_mail_raise_exception: MagicMock,
 ) -> Response | Any:
     return client.post("/auth/register/", register_user_payload)
 
@@ -46,6 +57,7 @@ def reset_password_too_similar_response(
 
 __all__ = [
     "register_user_response",
+    "register_user_email_failure_response",
     "login_user_response",
     "logout_user_response",
     "reset_password_response",
